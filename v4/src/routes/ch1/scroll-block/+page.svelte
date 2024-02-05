@@ -1,9 +1,9 @@
 <script lang="ts">
  import { createPopupManager } from "$lib/popup";
+ import Popup from "$lib/Popup.svelte";
  import { range } from "lodash-es";
 
  const { isLocked, count, createPopup, removePopup } = createPopupManager();
- // TODO: Style them popups
  $: if (typeof document !== "undefined") {
      document.body.style.overflow = $isLocked ? "hidden" : "scroll";
  }
@@ -14,9 +14,11 @@
     <button on:click={removePopup}>Remove popup</button>
     <br/>
 </section>
-<section>
+<section style:position="relative">
     {#each range($count) as i}
-	<p>This is popup {i}</p>
+        <Popup offset={i}>
+            this is popup {i}
+        </Popup>
     {/each}
 </section>
 <section>
