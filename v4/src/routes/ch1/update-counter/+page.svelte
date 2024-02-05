@@ -1,36 +1,41 @@
 <script lang="ts">
- import { afterUpdate } from "svelte";
- import { createUpdateCounter } from "$lib/update-counter.ts";
+ import { createCounter, createAutoCounter, createUpdateCounter } from "$lib/counter";
 
- // let updateCount = 0;
- // let measuring = false;
- // 
- //  afterUpdate(() => {
- //      if (measuring) {
- //          updateCount++;
- //      }
- //  });
- // 
- // function startMeasuring() {
- //     updateCount = 0;
- //     measuring = true;
- // }
- // 
- // function stopMeasuring() {
- //     measuring = false;
- // }
+ const {
+     counter: manualCounter,
+     increase: increaseManualCounter,
+     reset: resetManualCounter
+ } = createCounter();
 
- const { updateCount, startMeasuring, stopMeasuring } = createUpdateCounter();
+ const {
+     counter: autoCounter,
+     stop: stopAutoCounter,
+     resume: resumeAutoCounter,
+ } = createAutoCounter();
 
- let counter = 0;
+ const {
+     counter: updateCounter,
+     start: startUpdateCounter,
+     stop: stopUpdateCounter,
+ } = createUpdateCounter();
+
 </script>
+
 <p>
-    <button on:click={startMeasuring}>Measure</button>
-    <button on:click={stopMeasuring}>Stop</button>
-    <span>Updated {$updateCount}</span>
+    <button on:click={increaseManualCounter}>Increase</button>
+    <span>Counter: { $manualCounter }</span>
+    <button on:click={resetManualCounter}>Reset</button>
+</p>
+
+<p>
+    <button on:click={resumeAutoCounter}>Resume</button>
+    <span>Auto Counter: { $autoCounter }</span>
+    <button on:click={stopAutoCounter}>Stop</button>
 </p>
 <p>
-    <button on:click={() => counter++}>Click counter: {counter}</button>
+    <button on:click={startUpdateCounter}>Start</button>
+    <span>Update Counter: { $updateCounter }</span>
+    <button on:click={stopUpdateCounter}>Stop</button>
 </p>
 
 
