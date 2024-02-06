@@ -9,4 +9,12 @@
  }
 </script>
 
-<JsonTree data={data} />
+<JsonTree data={data}>
+    <svelte:fragment slot="obj-key" let:key>
+        <em>{key}</em>
+    </svelte:fragment>
+
+    <svelte:fragment slot="obj-value" let:value>
+        <u>{value}</u>
+    </svelte:fragment>
+</JsonTree>
