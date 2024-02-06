@@ -19,11 +19,13 @@
 <ul>
     {#each Object.entries(data) as [key,value]}
         <li>
-            {key}:
+            <slot name="obj-key" key={key}>{key}:</slot>
             {#if typeof value == "object" }
                 <svelte:self data={value} />
             {:else}
-                <JsonValue component={getComponent(typeof value)} props={{ value }} />
+                <slot name="obj-value" value={value}>
+                    <JsonValue component={getComponent(typeof value)} props={{ value }} />
+                </slot>
             {/if}
         </li>
     {/each}
