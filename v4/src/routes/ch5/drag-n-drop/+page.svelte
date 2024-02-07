@@ -3,6 +3,7 @@
 
   type MousePosition = { x: number; y: number };
 
+ // TODO: Add them event handler types
   const getPosition = (e: MouseEvent) => {
     return { x: e.clientX, y: e.clientY };
   };
@@ -67,33 +68,34 @@
     };
 
     node.addEventListener("mousedown", onMouseDown);
-    node.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mouseup", onMouseUp);
     node.addEventListener("mousemove", onMouseMove);
 
     return {
       destroy: () => {
         node.removeEventListener("mousedown", onMouseDown);
-        node.removeEventListener("mouseup", onMouseUp);
+        document.removeEventListener("mouseup", onMouseUp);
         node.removeEventListener("mousemove", onMouseMove);
       },
     };
   };
 </script>
 
-<style>
- .square {
-     width: 50px;
-     height: 50px;
-     background-color: red;
- }
-</style>
-
 <div
-    class="square"
-    use:dragAndDrop
-    on:dragStart={(e) => console.log("dragStart")}
-    on:dragMove={(e) => console.log("dragMove")}
-    on:dragEnd={(e) => console.log("dragEnd")}
+  class="square"
+  use:dragAndDrop
+  on:dragStart={(e) => console.log("dragStart")}
+  on:dragMove={(e) => console.log("dragMove")}
+  on:dragEnd={(e) => console.log("dragEnd")}
 >
-    Drag me
+  Drag me
 </div>
+
+<style>
+  .square {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+  }
+</style>
