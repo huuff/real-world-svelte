@@ -7,7 +7,7 @@ import { get, writable } from "svelte/store";
 export function createCounter() {
   const counter = writable(0);
 
-  const increase = () => counter.update(it => it+1);
+  const increase = () => counter.update((it) => it + 1);
   const reset = () => counter.set(0);
 
   return { counter, increase, reset };
@@ -26,13 +26,13 @@ export function createAutoCounter() {
   onMount(() => {
     const intervalId = setInterval(() => {
       if (get(enabled)) {
-        counter.update(it => it+1)
+        counter.update((it) => it + 1);
       }
     }, 1000);
     return () => clearInterval(intervalId);
   });
 
-  return { counter, stop, resume }
+  return { counter, stop, resume };
 }
 
 /**
@@ -44,7 +44,7 @@ export function createUpdateCounter() {
 
   afterUpdate(() => {
     if (get(enabled)) {
-      counter.update(it => it+1);
+      counter.update((it) => it + 1);
     }
   });
 
@@ -56,4 +56,3 @@ export function createUpdateCounter() {
 
   return { counter, start, stop };
 }
-

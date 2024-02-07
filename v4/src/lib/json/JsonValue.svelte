@@ -1,8 +1,8 @@
 <script lang="ts" generics="C extends ComponentType">
- import type { ComponentType, ComponentProps } from "svelte";
+  import type { ComponentType, ComponentProps } from "svelte";
 
- export let component: C;
- export let props: ComponentProps<InstanceType<C>>;
+  export let component: C;
+  export let props: ComponentProps<InstanceType<C>>;
 </script>
 
-<svelte:component this={component} {...props}/>
+<svelte:component this={component} {...props} />
