@@ -3,7 +3,6 @@
 
   const validateOnType: Action<HTMLInputElement> = (node) => {
     const onInput = () => {
-      // TODO: Try to use 'this'?
       const isValid = node.checkValidity();
       const errorMessage = isValid ? "" : "ERROR!!!!!!!!";
 
