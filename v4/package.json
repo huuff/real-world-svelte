@@ -37,6 +37,9 @@
     "@types/codemirror": "^5.60.15",
     "codemirror": "^6.0.1",
     "lodash-es": "^4.17.21",
+    "react": "^18.2.0",
+    "react-calendar": "^4.8.0",
+    "react-dom": "^18.2.0",
     "tippy.js": "^6.3.7",
     "ts-pattern": "^5.0.6"
   }
