@@ -3,7 +3,6 @@
 
   type MousePosition = { x: number; y: number };
 
- // TODO: Add them event handler types
   const getPosition = (e: MouseEvent) => {
     return { x: e.clientX, y: e.clientY };
   };
@@ -84,9 +83,9 @@
 <div
   class="square"
   use:dragAndDrop
-  on:dragStart={(e) => console.log("dragStart")}
-  on:dragMove={(e) => console.log("dragMove")}
-  on:dragEnd={(e) => console.log("dragEnd")}
+  on:dragStart={() => console.log("dragStart")}
+  on:dragMove={() => console.log("dragMove")}
+  on:dragEnd={() => console.log("dragEnd")}
 >
   Drag me
 </div>
