@@ -16,4 +16,5 @@
   };
 </script>
 
-<div use:tippyAction={"and this is the tooltip"}>This has a tooltip</div>
+<span use:tippyAction={"and this is the tooltip"}>This has a tooltip</span>
+
