@@ -1,16 +1,19 @@
 <script lang="ts">
   import { readable } from "svelte/store";
+  import { onMount } from "svelte";
 
-  const createStore = () =>
-    readable(0, (set) => {
-      const onScroll = () => set(window.scrollY);
-      document.addEventListener("scroll", onScroll);
+  onMount(() => {
+    const createStore = () =>
+      readable(0, (set) => {
+        const onScroll = () => set(window.scrollY);
+        document.addEventListener("scroll", onScroll);
 
-      return () => document.removeEventListener("scroll", onScroll);
-    });
+        return () => document.removeEventListener("scroll", onScroll);
+      });
 
-  const scrollStore = createStore();
-  scrollStore.subscribe((val) => console.log(`Scroll: ${val}`));
+    const scrollStore = createStore();
+    scrollStore.subscribe((val) => console.log(`Scroll: ${val}`));
+  });
 </script>
 
 Nullam eu ante vel est convallis dignissim.&nbsp;&nbsp;Fusce suscipit, wisi nec facilisis facilisis,
