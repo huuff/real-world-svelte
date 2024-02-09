@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { writable, type Writable } from "svelte/store";
+  import { get, writable, type Writable } from "svelte/store";
 
   type Tween = {
     readonly initialValue: number;
@@ -27,10 +27,9 @@
     const set: (typeof store)["set"] = (newVal) => {
       clearInterval(updateIntervalId);
       pastIterations = 0;
-      setInterval(() => {
-        // TODO: Actual tween using newVal
-
-        store.update((val) => val + 1);
+      const increments = (newVal - get(store)) / iterations;
+      updateIntervalId = setInterval(() => {
+        store.update((val) => val + increments);
         pastIterations++;
 
         if (pastIterations >= iterations) {
