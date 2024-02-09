@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Action } from "svelte/action";
+  import StoreSetterForm from "$lib/StoreSetterForm.svelte";
   import { writable, type Writable } from "svelte/store";
 
   type UndoRedoStore<T> = Writable<T> & {
@@ -42,33 +42,9 @@
   const store = createUndoRedoStore(0);
 
   store.subscribe((val) => console.log(`new val: ${val}`));
-
-  const submitToStore: Action<HTMLFormElement> = (form) => {
-    const onSubmit = (e: SubmitEvent) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      const nextVal = formData.get("nextval");
-
-      if (nextVal != null) {
-        store.set(+nextVal);
-      }
-
-      form.reset();
-    };
-
-    form.addEventListener("submit", onSubmit);
-
-    return {
-      destroy: () => form.removeEventListener("submit", onSubmit),
-    };
-  };
 </script>
 
-<form use:submitToStore>
-  <input type="number" name="nextval" />
-  <button>Submit</button>
-</form>
+<StoreSetterForm {store} />
 <div>
   <button on:click={store.undo}>Undo</button>
   <button on:click={store.redo}>Redo</button>

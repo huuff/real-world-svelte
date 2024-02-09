@@ -1,4 +1,5 @@
 <script lang="ts">
+  import StoreSetterForm from "$lib/StoreSetterForm.svelte";
   import { get, writable, type Writable } from "svelte/store";
 
   type Tween = {
@@ -46,7 +47,6 @@
   };
 
   const tweenedStore = createTweenedStore({ initialValue: 0 });
-  tweenedStore.set(10);
 </script>
 
-<span>{$tweenedStore}</span>
+<StoreSetterForm store={tweenedStore} />
