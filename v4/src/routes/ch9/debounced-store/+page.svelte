@@ -1,29 +1,21 @@
 <script lang="ts">
-  import { writable, type Writable } from "svelte/store";
+  import { derived, writable, type Writable } from "svelte/store";
 
   const debounce: <T>(store: Writable<T>) => Writable<T> = <T,>(store: Writable<T>) => {
-    const debounced = writable<T>();
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    const subscribe: (typeof debounced)["subscribe"] = (fn) => {
-      const debouncedUnsubscribe = debounced.subscribe(fn);
-      const unsubscribe = store.subscribe((value) => {
-        if (timeoutId !== null) clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          timeoutId = undefined;
-          debounced.set(value);
-        }, 200);
-      });
+    const debounced = derived<Writable<T>, T>(store, (value, set) => {
+      let timeoutId: ReturnType<typeof setTimeout> | undefined = setTimeout(() => {
+        timeoutId = undefined;
+        set(value);
+      }, 200);
 
       return () => {
-        debouncedUnsubscribe();
-        unsubscribe();
+        if (timeoutId !== undefined) clearTimeout(timeoutId);
       };
-    };
+    });
 
     return {
       ...store,
-      subscribe,
+      subscribe: debounced.subscribe,
     };
   };
 
