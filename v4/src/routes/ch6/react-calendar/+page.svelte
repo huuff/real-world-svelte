@@ -24,6 +24,12 @@
   };
 
   let date = new Date();
+
+  const changeHandler = (e: Event) => {
+    if ("detail" in e && e.detail instanceof Date) {
+      date = e.detail;
+    }
+  };
 </script>
 
-<div use:calendar={date} on:change={(e) => (date = e.detail)} />
+<div use:calendar={date} on:change={changeHandler} />

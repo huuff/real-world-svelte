@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
 
-  // TODO: I need to type this!
   export let data: PageData;
 </script>
 
