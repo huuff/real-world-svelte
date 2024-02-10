@@ -67,7 +67,7 @@ export function createUpdateCounter() {
     count = 0;
   };
 
-  $effect.pre(() => {
+  $effect(() => {
     count++;
   });
 
