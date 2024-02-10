@@ -16,6 +16,7 @@ export function createCounter() {
     reset,
   };
 }
+// TODO: rename "resume"s to "start"
 
 /**
  * Creates a counter that's incremented on an interval
@@ -39,6 +40,35 @@ export function createAutoCounter(intervalMillis?: number) {
       }
     }, actualInterval);
     return () => clearInterval(intervalId);
+  });
+
+  return {
+    get count() {
+      return count;
+    },
+    get enabled() {
+      return enabled;
+    },
+    stop,
+    resume,
+  };
+}
+
+/**
+ * Creates a counter that's incremented every time the component refreshes
+ */
+export function createUpdateCounter() {
+  let count = $state(0);
+  let enabled = $state(true);
+
+  let stop = () => (enabled = false);
+  let resume = () => {
+    enabled = true;
+    count = 0;
+  };
+
+  $effect.pre(() => {
+    count++;
   });
 
   return {
