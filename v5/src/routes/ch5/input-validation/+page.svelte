@@ -1,17 +1,17 @@
 <script lang="ts">
-  import ValidatedInput from "$lib/ValidatedInput.svelte";
+  import { inputValidation } from "$lib/input-validation-action";
 
-  let classname = $state("");
-
-  const validityChangeHandler = (newValidity: boolean) => {
-    classname = newValidity ? "" : "invalid";
-  };
+  let isValid = $state(true);
 </script>
 
-<ValidatedInput class={classname} onvaliditychange={validityChangeHandler} required />
+<input
+  use:inputValidation={(newValidity) => (isValid = newValidity)}
+  class={isValid ? "" : "invalid"}
+  required
+/>
 
 <style>
-  :global(.invalid) {
+  .invalid {
     outline: 1px solid red;
   }
 </style>
