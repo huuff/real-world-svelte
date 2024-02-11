@@ -47,14 +47,14 @@
     };
 
     elem.addEventListener("mousedown", mouseDownHandler);
-    elem.addEventListener("mousemove", mouseMoveHandler);
-    elem.addEventListener("mouseup", mouseUpHandler);
+    document.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
 
     return {
       destroy: () => {
         elem.removeEventListener("mousedown", mouseDownHandler);
-        elem.removeEventListener("mousemove", mouseMoveHandler);
-        elem.removeEventListener("mouseup", mouseUpHandler);
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        document.removeEventListener("mouseup", mouseUpHandler);
       },
     };
   };
