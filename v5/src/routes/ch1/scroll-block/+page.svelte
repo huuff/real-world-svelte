@@ -13,8 +13,8 @@
 </script>
 
 <section>
-  <button on:click={popupManager.createPopup}>Create popup</button>
-  <button on:click={popupManager.removePopup}>Remove popup</button>
+  <button onclick={popupManager.createPopup}>Create popup</button>
+  <button onclick={popupManager.removePopup}>Remove popup</button>
 
   <div style:position="relative">
     {#each range(popupManager.count) as offset}

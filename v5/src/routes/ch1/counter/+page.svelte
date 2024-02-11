@@ -8,18 +8,18 @@
 
 <section>
   <span>Manual Counter: {manualCounter.count}</span>
-  <button on:click={manualCounter.increase}>Increase</button>
-  <button on:click={manualCounter.reset}>Reset</button>
+  <button onclick={manualCounter.increase}>Increase</button>
+  <button onclick={manualCounter.reset}>Reset</button>
 </section>
 
 <section>
   <span>Auto Counter: {autoCounter.count}</span>
-  <button on:click={autoCounter.resume} disabled={autoCounter.enabled}>Start</button>
-  <button on:click={autoCounter.stop} disabled={!autoCounter.enabled}>Stop</button>
+  <button onclick={autoCounter.resume} disabled={autoCounter.enabled}>Start</button>
+  <button onclick={autoCounter.stop} disabled={!autoCounter.enabled}>Stop</button>
 </section>
 
 <section>
   <span>Update Counter: {updateCounter.count}</span>
-  <button on:click={updateCounter.resume} disabled={updateCounter.enabled}>Start</button>
-  <button on:click={updateCounter.stop} disabled={!updateCounter.enabled}>Stop</button>
+  <button onclick={updateCounter.resume} disabled={updateCounter.enabled}>Start</button>
+  <button onclick={updateCounter.stop} disabled={!updateCounter.enabled}>Stop</button>
 </section>
